@@ -1,0 +1,648 @@
+{
+	"info": {
+		"_postman_id": "f6fdd5ef-9c46-406c-a7e3-876a8ff3c604",
+		"name": "Vault",
+		"description": "https://www.vaultproject.io/api-docs/secret/kv/kv-v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Read KV Engine configuration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/config",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Secret Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/data/:path?version=1",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"data",
+								":path"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "1"
+								}
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Get/Read/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Secret Metadata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/metadata/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"metadata",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Get/Read/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Create/Update Secret",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"foo\": \"bar\",\n    \"zip\": \"zap\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/data/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"data",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Create/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Secret Versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"versions\": [1,2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/delete/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"delete",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Create/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete Secret Versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"versions\": [1,2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/undelete/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"undelete",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Create/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Configure the KV Engine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"max_versions\": 15,\n  \"cas_required\": false,\n  \"delete_version_after\": \"3h25m19s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/config",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Metadata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"max_versions\": 15,\n  \"cas_required\": false,\n  \"delete_version_after\": \"3h25m19s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/metadata/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"metadata",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "another/path/to/secret2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DEL",
+			"item": [
+				{
+					"name": "Delete Latest Version of Secret",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/data/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"data",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Create/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Metadata and All Versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/metadata/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"metadata",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Path/To/Secret"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LIST",
+			"item": [
+				{
+					"name": "List Secrets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});",
+									"pm.test(\"Verify status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "LIST",
+						"header": [
+							{
+								"key": "{{KEY}}",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{vault_url}}v1/PostmanTests/metadata/:path",
+							"host": [
+								"{{vault_url}}v1"
+							],
+							"path": [
+								"PostmanTests",
+								"metadata",
+								":path"
+							],
+							"variable": [
+								{
+									"key": "path",
+									"value": "Get/Read/"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
